@@ -6,9 +6,10 @@ from datetime import datetime
 from blog.models import BlogPost
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
+from django.template import RequestContext
 def archive(request):
     posts = BlogPost.objects.all().order_by("-title") #order the data
-    return render_to_response("archive.html", {'posts':posts})
+    return render(request, "archive.html", {'posts':posts})
 def create_blogpost(request):
     print "***************"
     if request.method == 'POST':
